@@ -11,11 +11,9 @@ controller.register = (req,res) => {
 
 controller.showbills = (req,res) => {
 
-  const filtrado = req.headers.host
+  const filtrado = Object.keys(req.query)
 
-  console.log(req.headers)
-
-  aire.find( { propiedad : filtrado } )
+  aire.find( { propiedad : filtrado[0] } )
   .then(factura => {
     res.render('bills', {
       bills: factura
