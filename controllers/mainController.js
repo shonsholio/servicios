@@ -12,6 +12,8 @@ controller.register = (req,res) => {
 controller.showbills = (req,res) => {
   const filtrado = req.url.split('?')[1]
 
+  console.log(filtrado)
+  
   aire.find( { propiedad : filtrado } )
   .then(factura => {
     res.render('bills', {
