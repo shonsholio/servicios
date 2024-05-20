@@ -10,11 +10,12 @@ controller.register = (req,res) => {
 }
 
 controller.showbills = (req,res) => {
+
   const filtrado = req.url.split('?')[1]
 
   console.log(filtrado)
-  
-  aire.find( { propiedad : filtrado } )
+
+  aire.find( { propiedad : " " } )
   .then(factura => {
     res.render('bills', {
       bills: factura
