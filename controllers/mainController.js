@@ -15,7 +15,7 @@ controller.showbills = (req,res) => {
 
   console.log(filtrado)
 
-  aire.find( { propiedad : " " } )
+  aire.find( { propiedad : filtrado } )
   .then(factura => {
     res.render('bills', {
       bills: factura
