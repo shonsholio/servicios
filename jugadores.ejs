@@ -1,0 +1,114 @@
+<%- include('partials/_header') %> %>
+
+  <!-- NOTAS DEL ARCHIVO
+
+  * Aqui quedamos pendiente de la funcion de editar informacion de jugador -->
+
+  <a href="/">
+    <button>INICIO</button>
+  </a>
+  
+  <% data.forEach((game,index) => { %>
+    
+  <a href="/q1?idGame=<%=game.idGame %>">
+    <button>JUEGO</button>
+  </a>
+
+  <div id="infoEquipoA">
+      <p class="display-4"><%= game.equipoA %></p>
+      <p class="display-6"><%= game.coachA %></p
+  
+      <div class="d-lg-flex align-items-center">
+        <form action="/players" method="post" id="formPlayer" class="col-lg-5">
+          <input name="nro" placeholder="##" class="col-lg-1" required></input>
+          <input name="nombre" placeholder="Nombre" class="col-lg-6" required></input>
+          <input name="documento" placeholder="Documento" class="col-lg-3" required></input>
+          <input name="idGame" value="<%=game.idGame %>" class="d-none"></input>
+          <input name="equipo" value="A" class="d-none"></input>
+
+          <button class="btn btn-info text-white" >+</button>
+        </form>
+      </div>
+  
+      <table class="col-lg-5">
+        <!-- MODULO DE ENCABEZADO DE PLANILLAS -->
+        <tr class="bg-secondary text-white">
+          <th>##</th>
+          <th>NOMBRE</th>
+          <th>DOCUMENTO</th>
+          <th></th>
+    
+        </tr>
+    
+        <tr class="">
+        <% playersA.forEach((player, index) => { %>
+          <td><%=player.nro %></td>
+          <td><%=player.nombre %></td>
+          <td><%=player.documento %></td>
+          <form action="/deletePlayer?idGame=<%=player.idGame %>-<%=player.documento %>" method="post">
+            <td><input value="<%=player.documento %>" class="d-none"></input></td>
+            <td><input value="<%=player.idGame %>" class="d-none"></input></td>
+            <td><button class="btn btn-danger"> - </button></td>
+          </form>
+        </tr>
+        <% }) %>  
+          
+      </table>
+  
+    <% }) %>
+
+  </div>
+
+  <br><hr>
+
+  <!-- -------------- AQUI EMPIEZA EL EQUIPO B ------------------------ -->
+
+  <div id="infoEquipoB">
+    <% data.forEach((game,index) => { %>
+      <p class="display-4"><%= game.equipoB %></p>
+      <p class="display-6"><%= game.coachB %></p
+  
+      <div class="d-lg-flex align-items-center">
+        <form action="/players" method="post" id="formPlayer" class="col-lg-5">
+          <input name="nro" placeholder="##" class="col-lg-1" required></input>
+          <input name="nombre" placeholder="Nombre" class="col-lg-6" required></input>
+          <input name="documento" placeholder="Documento" class="col-lg-3" required></input>
+          <input name="idGame" value="<%=game.idGame %>" class="d-none"></input>
+          <input name="equipo" value="B" class="d-none"></input>
+
+          <button class="btn btn-info text-white" >+</button>
+        </form>
+      </div>
+  
+      <table class="col-lg-5">
+        <!-- MODULO DE ENCABEZADO DE PLANILLAS -->
+        <tr class="bg-secondary text-white">
+          <th>##</th>
+          <th>NOMBRE</th>
+          <th>DOCUMENTO</th>
+          <th></th>
+    
+        </tr>
+    
+        <tr class="">
+        <% playersB.forEach((player, index) => { %>
+          <td><%=player.nro %></td>
+          <td><%=player.nombre %></td>
+          <td><%=player.documento %></td>
+          <form action="/deletePlayer?idGame=<%=player.idGame %>-<%=player.documento %>" method="post">
+            <td><input value="<%=player.documento %>" class="d-none"></input></td>
+            <td><input value="<%=player.idGame %>" class="d-none"></input></td>
+            <td><button class="btn btn-danger"> - </button></td>
+          </form>
+        </tr>
+        <% }) %>  
+          
+      </table>
+  
+    <% }) %>
+
+  </div>
+
+</body>
+
+</html>     

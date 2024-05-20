@@ -1,0 +1,57 @@
+<%- include('partials/_header') %> %>
+<div class="mt-lg-4 text-center">
+
+  <h1>REGISTRO SERVICIOS PUBLICOS</h1>
+  
+  <div id="menu">
+    <button><a href="/" >Inicio</a></button>
+    <button><a href="/registro" >Registrar facturas</a></button>
+  </div>
+
+  <div class="mt-lg-4">
+    
+    <form action="/new-bill" method="post">
+
+      <div class="d-lg-block">
+
+        <label for="">Propiedad</label>
+        <select name="propiedad"> 
+          <option value="409">409</option>
+          <option value="306">306A</option>
+          <option value="501">501A</option>
+          <option value="510">510</option>
+          <option value="702">702</option>
+          <option value="102">102</option>
+          <option value="100">1001</option>
+        </select>
+        
+      </div>
+
+      <div class="d-lg-block">
+
+        <label>Fecha Lectura</label>
+        <input type="date" name="fechaLectura" required></input>
+        
+      </div>
+
+      <div class="d-lg-block">
+
+        <label>Lectura</label>
+        <input type="number" name="lectura" required></input>
+        
+      </div>
+
+      <div class="d-lg-block">
+
+        <label>Valor factura</label>
+        <input type="number" name="valorFactura" required></input>
+        
+      </div>
+    
+      <button type="submit">ENVIAR</button>  
+    </form>
+  </div>
+</div>
+  
+</body>
+</html>
