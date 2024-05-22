@@ -1,3 +1,11 @@
 VAMOS A TENER UNA PAGINA CENTRAL, DONDE SE CONECTA CON OTROS MODULOS
 
 Modulo para meter la informacion por cada servicio publico
+
+22-05-2024
+
+REALIZADAS
+
+* Incluir todas las facturas de luz a la fecha de todas las propiedades
+
+PENDIENTES

@@ -10,7 +10,6 @@
       <table class="">
 
         <tr class="bg-danger text-white">
-          <th>Apartamento</th>
           <th>Fecha Lectura Actual</th>
           <th>Lectura Actual</th>
           <th>Valor Factura</th>
@@ -18,7 +17,6 @@
 
         <% for ( i = 0; i < bills.length; ++ i) { %>
         <tr>
-          <td><%= bills[i].propiedad %></td>
           <td><%= bills[i].fechaLectura %></td>
           <td><%= bills[i].lectura %></td>
           <td><%= '$ ' + bills[i].valorFactura.toLocaleString() %></td>

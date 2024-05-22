@@ -13,8 +13,9 @@ controller.showbills = (req,res) => {
 
   const filtrado = Object.keys(req.query)
 
-  aire.find( { propiedad : filtrado[0] } )
+  aire.find( { propiedad : filtrado[0] } ).sort( { fechaLectura : -1 } )
   .then(factura => {
+
     res.render('bills', {
       bills: factura
     })
