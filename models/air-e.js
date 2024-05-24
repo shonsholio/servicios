@@ -11,7 +11,8 @@ const UserScheme = new mongoose.Schema({
   consumo: Number,
   consumoDia: Number,
   valorKw: Number,
-  valorFacturaDia: Number
+  valorFacturaDia: Number,
+  idBills: Number
 
 })
 

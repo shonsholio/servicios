@@ -37,12 +37,15 @@ controller.newbill = async (req,res) => {
   let valKw = parseFloat((bill.valorFactura / consumoTotal).toFixed(2))
   let valFactDia = parseFloat((bill.valorFactura / difDias).toFixed(2))
 
+  let cadena = Math.floor((Math.random() * (999999 - 100000 + 1)) + 100000)
+
   // INCLUYENDO VALORES COMPUTADOS
   bill.diasFacturados = difDias
   bill.consumo = consumoTotal
   bill.consumoDia = consDia
   bill.valorKw = valKw
   bill.valorFacturaDia = valFactDia
+  bill.idBill = cadena
 
   try {
     const newBill = await aire.create(bill)
