@@ -45,7 +45,7 @@ controller.newbill = async (req,res) => {
   bill.consumoDia = consDia
   bill.valorKw = valKw
   bill.valorFacturaDia = valFactDia
-  bill.idBill = cadena
+  bill.idBills = cadena
 
   try {
     const newBill = await aire.create(bill)
