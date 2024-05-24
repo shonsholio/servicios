@@ -9,3 +9,7 @@ REALIZADAS
 * Incluir todas las facturas de luz a la fecha de todas las propiedades
 
 PENDIENTES
+
+* Pasar el formulario de registro de las facturas, al principio de la tabla donde se visualizan las facturas
+* Incluir en el formulario, fecha de lectura anterior y lectura anteiror, para que todos los datos computados queden guardados en la base de datos
+* Tambien necesitamos poder eliminar o editar una factura en la app, si fuese necesario

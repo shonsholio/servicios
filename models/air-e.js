@@ -2,9 +2,17 @@ const mongoose = require('mongoose');
 
 const UserScheme = new mongoose.Schema({
   propiedad: String,
-  fechaLectura: String,
-  lectura: Number,
-  valorFactura: Number
+  fechaLecturaActual: String,
+  lecturaActual: Number,
+  fechaLecturaAnterior: String,
+  lecturaAnterior: Number,
+  valorFactura: Number,
+  diasFacturados: Number,
+  consumo: Number,
+  consumoDia: Number,
+  valorKw: Number,
+  valorFacturaDia: Number
+
 })
 
 const aire = mongoose.model('aire', UserScheme)

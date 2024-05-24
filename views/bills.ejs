@@ -7,23 +7,33 @@
     <button><a href="/registro" >Registrar facturas</a></button>
 
     <div class="d-lg-flex justify-content-center mt-lg-4">
-      <table class="table table-striped">
+
+      <table class="table table-hover table-striped">
 
         <tr class="bg-danger text-white">
           <th>Fecha Lectura Actual</th>
           <th>Lectura Actual</th>
           <th>Valor Factura</th>
+          <th>Borrar</th>
+
         </tr>
 
         <% for ( i = 0; i < bills.length; ++ i) { %>
         <tr>
-          <td><%= bills[i].fechaLectura %></td>
-          <td><%= bills[i].lectura %></td>
+          <td><%= bills[i].fechaLecturaActual %></td>
+          <td><%= bills[i].lecturaActual %></td>
           <td><%= '$ ' + bills[i].valorFactura.toLocaleString() %></td>
+          <form action="/delete-Bill?idBill=<%=bills[i].id %>" method="post">
+            <td><input value="<%=bills[i].id %>" class="d-none"></input></td>
 
+            <td><button> - </button></td> 
+          </form>
         </tr>
         <% } %>
       </table>
+      
+    </div>
+           
     </div>
 
   </div>
