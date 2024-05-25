@@ -23,6 +23,7 @@ controller.showBills = (req,res) => {
 }
 
 controller.newbill = async (req,res) => {
+  console.log(req.query)
   const bill = req.body
 
   // OPERACIONES PARA INCLUIR EN BD
@@ -60,12 +61,15 @@ controller.newbill = async (req,res) => {
 }
 
 controller.deleteBill = (req,res) => {
-  const data = req.query.idBill
+  const data = req.query.idBill.split("-")[0]
+  const urlActual = req.query.idBill.split("-")[1]
+
+  console.log(urlActual)
 
   aire.deleteOne({ _id : data })
   .then(result => {
     console.log(`Documento eliminado: ${result.deletedCount}`);
-    res.redirect('/')
+    res.redirect(`/showbills?${urlActual}`)
   })
   .catch(err => console.error(err));
 }

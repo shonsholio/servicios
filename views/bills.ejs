@@ -13,20 +13,35 @@
         <tr class="bg-danger text-white">
           <th>Fecha Lectura Actual</th>
           <th>Lectura Actual</th>
+          <th>Fecha Lectura Anterior</th>
+          <th>Lectura Anterior</th>
           <th>Valor Factura</th>
-          <th>Borrar</th>
+          <th>Acción</th>
 
+        </tr>
+
+        <tr>
+          <form action="/new-bill" method="post">
+          <td><input type="date" name="fechaLecturaActual" required></input></td>
+          <td><input type="number" name="lecturaActual" required></input></td>
+          <td><input type="date" name="fechaLecturaAnterior" required></input></td>
+          <td><input type="number" name="lecturaAnterior" required></input></td>
+          <td><input type="number" name="valorFactura" required></input></td>
+          <input class="d-none" name="propiedad" value="<%=bills[0].propiedad %>" ></input>
+          <td><button type="submit">+</button></td>
         </tr>
 
         <% for ( i = 0; i < bills.length; ++ i) { %>
         <tr>
           <td><%= bills[i].fechaLecturaActual %></td>
           <td><%= bills[i].lecturaActual %></td>
+          <td><%= bills[i].fechaLecturaAnterior %></td>
+          <td><%= bills[i].lecturaAnterior %></td>
           <td><%= '$ ' + bills[i].valorFactura.toLocaleString() %></td>
-          <form action="/delete-Bill?idBill=<%=bills[i].id %>" method="post">
-            <td><input value="<%=bills[i].id %>" class="d-none"></input></td>
-
+          <form action="/delete-Bill?idBill=<%=bills[i].id %>-<%=bills[i].propiedad%>" method="post">
             <td><button> - </button></td> 
+            <td class="d-none"><input value="<%=bills[i].id %>" class="d-none"></input></td>
+
           </form>
         </tr>
         <% } %>
@@ -34,8 +49,7 @@
       
     </div>
            
-    </div>
-
   </div>
+
 </body>
 </html>
