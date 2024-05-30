@@ -9,17 +9,51 @@
 
 </div>
 
-<div class="col-lg-5 col-10">
+<div class="col-lg-5 col-12">
  
   <canvas id="graphConsumo" width="400px" height="200px"></canvas>
 
 </div>
 
-<div class="text-center">
+<div class="d-lg-none d-flex justify-content-center">
 
+  <form action="/new-bill" method="post">
+
+    <div class="d-block">
+      <label for="fechaLecturaActual">Fecha Lectura Actual</label>
+      <input type="date" name="fechaLecturaActual" required></input>
+    </div>
+
+    <div class="d-block">
+      <label for="lecturaActual">Lectura Actual</label>
+      <input type="number" name="lecturaActual" required></input>
+    </div>
+
+    <div class="d-block">
+      <label for="fechaLecturaAnterior">Fecha Lectura Anterior</label>
+      <input type="date" name="fechaLecturaAnterior" required></input>
+    </div>
+
+    <div class="d-block">
+      <label for="lecturaAnterior">Lectura Anterior</label>
+      <input type="number" name="lecturaAnterior" required></input>
+    </div>
+
+    <div class="d-block">
+      <label for="valorFactura">Valor Factura</label>
+      <input type="number" name="valorFactura" required></input>
+    </div>
+
+    <input class="d-none" name="propiedad" value="<%=bills[0].propiedad %>" ></input>
+    <td><button type="submit">Añadir Factura</button></td>
+
+</div>
+
+<div class="text-center justify-content-center">
+ 
     <div class="d-lg-flex justify-content-center mt-lg-4">
 
-      <table class="table table-hover table-striped d-lg-none">
+      <table class="table table-hover table-striped d-lg-flex d-none">
 
         <tr class="bg-danger text-white">
           <th>Fecha Lectura Actual</th>
@@ -74,12 +108,8 @@
       <% var datoId = 'consumo' + x %>
       <div id="<%=datoId %>" data-valor="<%=consumoDelMes %>"></div>
      <% } %>
-    <div></div>
 
   </div>
-
-  <script> 
-  </script>
 
   <script src="chart.js" ></script>
 
