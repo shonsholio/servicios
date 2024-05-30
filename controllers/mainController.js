@@ -19,7 +19,9 @@ controller.showBills = (req,res) => {
     res.render('bills', {
       bills: factura
     })
+
   })
+
 }
 
 controller.newbill = async (req,res) => {
@@ -46,12 +48,12 @@ controller.newbill = async (req,res) => {
   bill.consumoDia = consDia
   bill.valorKw = valKw
   bill.valorFacturaDia = valFactDia
-  bill.idBills = cadena
+  bill.idBills = cadena 
 
   try {
     const newBill = await aire.create(bill)
 
-    res.redirect('/')
+    res.redirect(`/showbills?${bill.propiedad}`)
   }
 
   catch (e) {

@@ -11,7 +11,7 @@ dotenv.config({ path: './config.env' });
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(connection => {
-    console.log('CONECTADOS A MONGODB' + connection)
+    console.log('CONECTADOS A MONGODB')
   })
   .catch('Error al conectar a Mongo')
 
@@ -28,9 +28,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 // ROUTES
 app.use('/', mainRoutes)
+
+// STATIC FILES
+app.use(express.static(path.join(__dirname, './public')));
 
 app.listen(app.get('port'), () => {
   console.log('CONECTADOS AL PUERTO 3000')

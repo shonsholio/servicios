@@ -1,14 +1,25 @@
-<%- include('partials/_header') %> %>
+<%- include('partials/_header') %>
 
-  <div class="text-center">
-    <h1>FACTURAS</h1>
-    <h2><%= bills[0].propiedad %></h2> 
-    <button><a href="/" >Inicio</a></button>
-    <button><a href="/registro" >Registrar facturas</a></button>
+<div class="text-center">
+
+  <h1>FACTURAS</h1>
+  <h2 id="propiedad" data-valor="<%= bills[0].propiedad %>"><%= bills[0].propiedad %></h2> 
+  <button><a href="/" >Inicio</a></button>
+  <button><a href="/registro" >Registrar facturas</a></button>
+
+</div>
+
+<div class="col-lg-5 col-10">
+ 
+  <canvas id="graphConsumo" width="400px" height="200px"></canvas>
+
+</div>
+
+<div class="text-center">
 
     <div class="d-lg-flex justify-content-center mt-lg-4">
 
-      <table class="table table-hover table-striped">
+      <table class="table table-hover table-striped d-lg-none">
 
         <tr class="bg-danger text-white">
           <th>Fecha Lectura Actual</th>
@@ -45,11 +56,33 @@
           </form>
         </tr>
         <% } %>
+
       </table>
       
     </div>
-           
+
+    <div id="bills" body="<%=bills %>" ></div>>
+
+    <!-- VAMOS A INTENTAR ALGO DISTINTO -->
+
+    <div id="dataLong" data-valor="<%=bills.length %>"></div>
+
+    <!-- AQUI VAN TODOS LOS CONSUMOS -->
+
+    <% for (x = 0; x < bills.length ; ++x ) { %>
+      <% var consumoDelMes = bills[x].consumo %>
+      <% var datoId = 'consumo' + x %>
+      <div id="<%=datoId %>" data-valor="<%=consumoDelMes %>"></div>
+     <% } %>
+    <div></div>
+
   </div>
 
+  <script> 
+  </script>
+
+  <script src="chart.js" ></script>
+
 </body>
+
 </html>
