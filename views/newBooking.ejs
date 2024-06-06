@@ -1,0 +1,77 @@
+<%- include('partials/_header') %> %>
+
+  <div class="text-center">
+
+    <p class="display-4">JAUSSERS CRM</p>
+    <p class="display-6">MODULO RESERVAS</p>
+    <button><a href="/" >Inicio</a></button>
+    <button><a href="/new-booking" >Nueva Reserva</a></button>
+
+  </div>
+    
+  <div class="d-flex justify-content-center">
+
+    <form action="/newBooking" method="post">
+
+      <div class="d-block">
+        <label for="propiedad">Apartamento</label>
+        <select name="propiedad" required>
+          <option value="409">Ciudad Jardin</option>
+          <option value="306A">Granadillo</option>
+          <option value="501A">La Campiña</option>
+          <option value="510S">510 Suite</option>
+          <option value="510C">510 Completo</option>
+          <option value="702S">702 Suite</option>
+          <option value="702C">702 Completo</option>
+        </select>
+      </div>
+
+      <div class="d-block">
+        <label for="nombreHuesped">Nombre del Huésped</label>
+        <input name="nombreHuesped" required>
+      </div>
+
+      <div class="d-block">
+        <label for="pax"># Huespedes</label>
+        <select name="pax" required>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+
+      <div class="d-block">
+        <label for="checkIn">Check-In</label>
+        <input name="checkIn" type="date" required>
+      </div>
+
+      <div class="d-block">
+        <label for="checkOut">Check-Out</label>
+        <input name="checkOut" type="date" required>
+      </div>
+
+      <div class="d-block">
+        <label for="channel">Canal</label>
+        <select name="channel" required>
+          <option value="direkto">Direkto</option>
+          <option value="airbnb">AirBnB</option>
+        </select>
+      </div>
+
+      <div class="d-block">
+        <label for="totalReserva">Total a Pagar</label>
+        <input name="totalReserva" required>
+      </div>
+
+
+      <button type="submit">Añadir Reserva</button>
+    </form>
+    
+  </div>
+
+  
+</body>
+</html> 

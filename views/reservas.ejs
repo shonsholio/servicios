@@ -1,0 +1,38 @@
+<%- include('partials/_header') %> %>
+
+  <div class="text-center">
+
+    <p class="display-4">JAUSSERS CRM</p>
+    <p class="display-6">MODULO RESERVAS</p>
+    <button><a href="/" >Inicio</a></button>
+
+    <button><a href="/new-booking" >Nueva Reserva</a></button>
+
+  </div>
+
+<div class="d-flex justify-content-center mt-4">
+
+  <table class="col-lg-4">
+    <tr class="text-center">
+      <th>Apto</th>
+      <th>Check-In</th>
+      <th>Huésped</th>
+      <th>Pax</th>
+  
+    </tr>
+  
+    <% for (x = 0; x < reservas.length; ++x) { %>
+    <tr class="text-center">
+        <td><%= reservas[x].propiedad %></td>
+        <td><%= reservas[x].checkIn  %></td>
+        <td><%= reservas[x].nombreHuesped  %></td>
+        <td><%= reservas[x].pax  %></td>
+    </tr>
+    <% } %>
+  </table>
+
+</div>
+
+  
+</body>
+</html>

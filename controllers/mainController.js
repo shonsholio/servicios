@@ -1,5 +1,7 @@
 const controller = {};
 const aire = require('../models/air-e')
+const guest = require('../models/guest')
+const booking = require('../models/booking')
 
 controller.main = (req,res) => {
   res.render('main')
@@ -74,6 +76,68 @@ controller.deleteBill = (req,res) => {
     res.redirect(`/showbills?${urlActual}`)
   })
   .catch(err => console.error(err));
+}
+
+controller.guest = (req,res) => {
+  res.render('guest')
+}
+
+controller.newGuest = (req,res) => {
+  res.render('newGuest')
+}
+
+controller.registerGuest = async (req,res) => {
+  let cadena = Math.floor((Math.random() * (999999 - 100000 + 1)) + 100000)
+
+  const dataGuest = req.body
+
+  dataGuest.idGuest = cadena
+
+  console.log(dataGuest)
+
+  try {
+    const newGuest = await guest.create(dataGuest)
+
+    res.redirect(`/guest`)
+  }
+
+  catch (e) {
+    console.log(e)
+  }
+
+}
+
+controller.reservas = (req,res) => {
+  booking.find({ }).sort( { checkIn : -1 } )
+  .then(reservas => {
+    res.render('reservas', {
+      reservas: reservas
+    })
+  })
+}
+
+controller.newBooking = (req,res) => {
+  res.render('newBooking')
+}
+
+controller.addBooking = async (req,res) => {
+
+  let cadena = Math.floor((Math.random() * (999999 - 100000 + 1)) + 100000)
+
+  const dataBooking = req.body
+
+  dataBooking.idBooking = cadena
+
+  try {
+    const newGuest = await booking.create(dataBooking)
+
+    res.redirect(`/reservas`)
+  }
+
+  catch (e) {
+    console.log(e)
+  }
+
 }
 
 module.exports = controller
