@@ -10,9 +10,19 @@
 
   </div>
 
-<div class="d-flex justify-content-center mt-4">
+  <!-- INGRESOS TOTALES DEL ANO -->
+  <div> 
+    <h3>INGRESOS 2024</h3>
+    <% let sumaReservas = 0 %>
+    <% for (a = 0; a < reservas.length; ++a) { %>
+      <% sumaReservas = sumaReservas + reservas[a].totalReserva %>
+    <% } %>
+    <h3>$ <%= sumaReservas.toLocaleString() %></h3>
+  </div>
 
-  <table class="col-lg-4">
+  <div class="d-flex justify-content-center mt-4">
+
+  <table class="table table-dark table-hover">
     <tr class="text-center">
       <th>Apto</th>
       <th>Check-In</th>
@@ -20,7 +30,7 @@
       <th>Pax</th>
   
     </tr>
-  
+    
     <% for (x = 0; x < reservas.length; ++x) { %>
     <tr class="text-center">
         <td><%= reservas[x].propiedad %></td>
