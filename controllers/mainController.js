@@ -2,6 +2,7 @@ const controller = {};
 const aire = require('../models/air-e')
 const guest = require('../models/guest')
 const booking = require('../models/booking')
+const meses = require('../public/meses.json')
 
 controller.main = (req,res) => {
   res.render('main')

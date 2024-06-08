@@ -1,4 +1,4 @@
-<%- include('partials/_header') %> %>
+<%- include('partials/_header') %>
 
   <div class="text-center">
 
@@ -20,6 +20,39 @@
     <h3>$ <%= sumaReservas.toLocaleString() %></h3>
   </div>
 
+  <!-- FECHAS PARA PARTIR EN MESES -->
+  <% let enero = 0 %>
+  <% let febrero = 0 %>
+  <% let marzo = 0 %>
+  <% let abril = 0 %>
+  <% let mayo = 0 %>
+  <% let junio = 0 %>
+  
+  <% for (z = 0; z < reservas.length; ++z) { %>
+    <% let mes = reservas[z].checkIn.split('-')[1] %> <!-- Individualizamos el mes del check-in -->
+    <% if (mes == '06') { %>
+      <% junio = junio + reservas[z].totalReserva %>
+      <% } else if (mes == '05') { %>
+        <% mayo = mayo + reservas[z].totalReserva %>
+      <% } else if (mes == '04') { %>
+        <% abril = abril + reservas[z].totalReserva %>
+      <% } else if (mes == '03') { %>
+        <% marzo = marzo + reservas[z].totalReserva  %>
+      <% } else if (mes == '02') { %>
+        <% febrero = febrero + reservas[z].totalReserva %>
+      <% } else if (mes == '01') { %>
+        <% enero = enero + reservas[z].totalReserva } %>
+  <% } %>        
+      
+  <h3>Ingresos por Mes</h3>
+  <p>Junio = $<%= junio.toLocaleString() %></p>
+  <p>Mayo = $<%= mayo.toLocaleString() %></p>
+  <p>Abril = $<%= abril.toLocaleString() %></p>
+  <p>Marzo = $<%= marzo.toLocaleString() %></p>
+  <p>Febrero = $<%= febrero.toLocaleString() %></p>
+  <p>Enero = $<%= enero.toLocaleString() %></p>
+
+  <!-- TABLA CON INFO DE RESERVAS -->
   <div class="d-flex justify-content-center mt-4">
 
   <table class="table table-dark table-hover">
@@ -32,9 +65,10 @@
     </tr>
     
     <% for (x = 0; x < reservas.length; ++x) { %>
+
     <tr class="text-center">
         <td><%= reservas[x].propiedad %></td>
-        <td><%= reservas[x].checkIn  %></td>
+        <td><%= reservas[x].checkIn %></td>
         <td><%= reservas[x].nombreHuesped  %></td>
         <td><%= reservas[x].pax  %></td>
     </tr>
