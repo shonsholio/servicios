@@ -2,7 +2,6 @@ const controller = {};
 const aire = require('../models/air-e')
 const guest = require('../models/guest')
 const booking = require('../models/booking')
-const meses = require('../public/meses.json')
 
 controller.main = (req,res) => {
   res.render('main')
@@ -109,12 +108,33 @@ controller.registerGuest = async (req,res) => {
 }
 
 controller.reservas = (req,res) => {
-  booking.find({ }).sort( { checkIn : -1 } )
-  .then(reservas => {
-    res.render('reservas', {
-      reservas: reservas
+  const apto = req.query.propiedad
+
+  if (( apto === undefined ) || ( apto === "jaussers" ) ){
+    booking.find({ }).sort( { checkIn : -1 } )
+    .then(reservas => {
+      res.render('reservas', {
+        reservas: reservas
+      })
     })
-  })
+  } else {
+    var miradorS = apto + 'S'
+    var miradorC = apto + 'C'
+
+    booking.find({
+      $or: [
+        { propiedad: miradorS },
+        { propiedad: miradorC },
+        { propiedad: apto }
+      ]
+    }).sort( { checkIn : -1 } )
+    .then(reservas => {
+      res.render('reservas', {
+        reservas: reservas
+      })
+    })
+  }
+
 }
 
 controller.newBooking = (req,res) => {
@@ -139,6 +159,11 @@ controller.addBooking = async (req,res) => {
     console.log(e)
   }
 
+}
+
+controller.dataReserva = (req,res) => {
+  const apto = req.body.apto
+  res.redirect(`/reservas?propiedad=${apto}`)
 }
 
 module.exports = controller

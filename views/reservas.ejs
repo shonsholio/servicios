@@ -3,15 +3,28 @@
   <div class="text-center">
 
     <p class="display-4">JAUSSERS CRM</p>
-    <p class="display-6">MODULO RESERVAS</p>
+    <p class="display-6">AQUI VA EL # DEL APTO</p>
     <button><a href="/" >Inicio</a></button>
 
     <button><a href="/new-booking" >Nueva Reserva</a></button>
 
   </div>
 
+  <form action="/dataReserva" method="post">
+    <label for="apto">Apartamento</label>
+    <select name="apto">Apartamento
+      <option value="jaussers">Todo Jaussers</option>
+      <option value="409">Ciudad Jardin</option>
+      <option value="306A">Granadillo</option>
+      <option value="501A">La Campiña</option>
+      <option value="510">Mirador 510</option>
+      <option value="702">Mirador 702</option>
+    </select>
+    <button type="submit" >TRABAJAR</button>
+  </form>
+
   <!-- INGRESOS TOTALES DEL ANO -->
-  <div> 
+  <div class="col-4"> 
     <h3>INGRESOS 2024</h3>
     <% let sumaReservas = 0 %>
     <% for (a = 0; a < reservas.length; ++a) { %>
@@ -20,37 +33,76 @@
     <h3>$ <%= sumaReservas.toLocaleString() %></h3>
   </div>
 
-  <!-- FECHAS PARA PARTIR EN MESES -->
-  <% let enero = 0 %>
-  <% let febrero = 0 %>
-  <% let marzo = 0 %>
-  <% let abril = 0 %>
-  <% let mayo = 0 %>
-  <% let junio = 0 %>
+    <!-- NOCHES TOTALES -->
+    <div class="col-4"> 
+      <h3>NOCHES 2024</h3>
+      <% var sumaNoches = 0 %>
+      <% for (a = 0; a < reservas.length; ++a) { %>
+        <% let dateChO = new Date(reservas[a].checkOut) %>
+        <% let dateChI = new Date(reservas[a].checkIn) %>
+        <% let noches = (dateChO.getTime() - dateChI.getTime()) / ( 1000 * 60 * 60 * 24) %>
+        <% sumaNoches = sumaNoches + noches %>
+      <% } %>
+      <h3><%= sumaNoches %></h3>
+    </div>
+ 
+  <!-- CODIGO PARA DATA DE MESES -->
+  <div>
+    <% let enero = 0 %>
+    <% let febrero = 0 %>
+    <% let marzo = 0 %>
+    <% let abril = 0 %>
+    <% let mayo = 0 %>
+    <% let junio = 0 %>
+    <% let julio = 0 %>
+
+    
+    <% for (z = 0; z < reservas.length; ++z) { %>
+      <% let mes = reservas[z].checkIn.split('-')[1] %> <!-- Individualizamos el mes del check-in -->
+      <% if (mes == '06') { %>
+        <% junio = junio + reservas[z].totalReserva %>
+        <% } else if (mes == '05') { %>
+          <% mayo = mayo + reservas[z].totalReserva %>
+        <% } else if (mes == '04') { %>
+          <% abril = abril + reservas[z].totalReserva %>
+        <% } else if (mes == '03') { %>
+          <% marzo = marzo + reservas[z].totalReserva  %>
+        <% } else if (mes == '02') { %>
+          <% febrero = febrero + reservas[z].totalReserva %>
+        <% } else if (mes == '01') { %>
+          <% enero = enero + reservas[z].totalReserva } %>
+    <% } %>        
+  </div>
   
-  <% for (z = 0; z < reservas.length; ++z) { %>
-    <% let mes = reservas[z].checkIn.split('-')[1] %> <!-- Individualizamos el mes del check-in -->
-    <% if (mes == '06') { %>
-      <% junio = junio + reservas[z].totalReserva %>
-      <% } else if (mes == '05') { %>
-        <% mayo = mayo + reservas[z].totalReserva %>
-      <% } else if (mes == '04') { %>
-        <% abril = abril + reservas[z].totalReserva %>
-      <% } else if (mes == '03') { %>
-        <% marzo = marzo + reservas[z].totalReserva  %>
-      <% } else if (mes == '02') { %>
-        <% febrero = febrero + reservas[z].totalReserva %>
-      <% } else if (mes == '01') { %>
-        <% enero = enero + reservas[z].totalReserva } %>
-  <% } %>        
-      
-  <h3>Ingresos por Mes</h3>
-  <p>Junio = $<%= junio.toLocaleString() %></p>
-  <p>Mayo = $<%= mayo.toLocaleString() %></p>
-  <p>Abril = $<%= abril.toLocaleString() %></p>
-  <p>Marzo = $<%= marzo.toLocaleString() %></p>
-  <p>Febrero = $<%= febrero.toLocaleString() %></p>
-  <p>Enero = $<%= enero.toLocaleString() %></p>
+  <!-- INGRESOS POR MES --> 
+  <div class="card col-3">
+    <h3>Ingresos por Mes</h3>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Junio = $<%= junio.toLocaleString() %></li>
+      <li class="list-group-item">Mayo = $<%= mayo.toLocaleString() %></li>
+      <li class="list-group-item">Abril = $<%= abril.toLocaleString() %></li>
+      <li class="list-group-item">Marzo = $<%= marzo.toLocaleString() %></li>
+      <li class="list-group-item">Febrero = $<%= febrero.toLocaleString() %></li>
+      <li class="list-group-item">Enero = $<%= enero.toLocaleString() %></li>
+    </ul>
+  </div>
+
+  <!-- NOCHES POR APTO POR MES --> 
+  <% var nochesEnero = 0 %>
+  <% var nochesFebrero = 0 %>
+  <% var nochesMarzo = 0 %>
+  <% var nochesAbril = 0 %>
+  <% var nochesMayo = 0 %>
+  <% var nochesJunio = 0 %>
+  <% var nochesJulio = 0 %>
+  <% var nochesAgosto = 0 %>
+  <% var nochesSeptiembre = 0 %>
+  <% var nochesOctubre = 0 %>
+  <% var nochesNoviembre = 0 %>
+  <% var nochesDiciembre = 0 %>
+  
+
+
 
   <!-- TABLA CON INFO DE RESERVAS -->
   <div class="d-flex justify-content-center mt-4">
@@ -59,9 +111,10 @@
     <tr class="text-center">
       <th>Apto</th>
       <th>Check-In</th>
+      <th>Check-Out</th>
       <th>Huésped</th>
       <th>Pax</th>
-  
+      <th>Noches</th>
     </tr>
     
     <% for (x = 0; x < reservas.length; ++x) { %>
@@ -69,8 +122,18 @@
     <tr class="text-center">
         <td><%= reservas[x].propiedad %></td>
         <td><%= reservas[x].checkIn %></td>
+        <td><%= reservas[x].checkOut %></td>
         <td><%= reservas[x].nombreHuesped  %></td>
         <td><%= reservas[x].pax  %></td>
+
+        <% var fechaChO = reservas[x].checkOut %>
+        <% var dateChO = new Date(fechaChO) %>
+        <% var fechaChI = reservas[x].checkIn %>
+        <% var dateChI = new Date(fechaChI) %>
+        <% var dias = Math.abs((dateChO.getTime() - dateChI.getTime()) / ( 1000 * 60 * 60 * 24))%>
+
+        <td><%= dias %></td>
+
     </tr>
     <% } %>
   </table>

@@ -20,6 +20,8 @@ el dia que entran
 el dia que salen
 en que apto se alojan
 cuantas habitaciones usan, en el caso de villa carolina
-si es direkto o por airbnb
 cuanto es el total que ingresa
+si es direkto o por airbnb
+
+vamos a sumar los ingresos por mes
 

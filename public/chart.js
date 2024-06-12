@@ -5,7 +5,6 @@ var largoData = Number(dataLong.dataset.valor)
 var dataBills = []
 for (x = 0; x < largoData ; -- largoData) {
   var itino = 'consumo' + (largoData - 1)
-  console.log(itino)
   var billsData = document.getElementById(itino)
   var bills = billsData.dataset.valor
   dataBills.push(bills)

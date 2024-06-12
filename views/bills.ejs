@@ -82,6 +82,7 @@
       <td><%= bills[i].fechaLecturaAnterior %></td>
       <td><%= bills[i].lecturaAnterior %></td>
       <td><%= '$ ' + bills[i].valorFactura.toLocaleString() %></td>
+      
       <form action="/delete-Bill?idBill=<%=bills[i].id %>-<%=bills[i].propiedad%>" method="post">
         <td><button> - </button></td> 
         <td class="d-none"><input value="<%=bills[i].id %>" class="d-none"></input></td>

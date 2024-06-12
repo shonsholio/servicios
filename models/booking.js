@@ -10,6 +10,7 @@ const UserScheme = new mongoose.Schema({
   telefono: Number,
   channel: String,
   totalReserva: Number,
+  status: String,
   idBooking: String
 })
 

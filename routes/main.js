@@ -21,7 +21,7 @@ router.get('/reservas', mainController.reservas)
 router.get('/new-booking', mainController.newBooking)
 router.post('/newBooking', mainController.addBooking)
 
-
+router.post('/dataReserva', mainController.dataReserva)
 
 
 
