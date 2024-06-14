@@ -54,19 +54,6 @@
         <% } %>
         <h3>$ <%= sumaReservas.toLocaleString() %></h3>
       </div>
-  
-      <!-- NOCHES TOTALES -->
-      <div class="col-4"> 
-        <h3>NOCHES 2024</h3>
-        <% var sumaNoches = 0 %>
-        <% for (a = 0; a < reservas.length; ++a) { %>
-          <% let dateChO = new Date(reservas[a].checkOut) %>
-          <% let dateChI = new Date(reservas[a].checkIn) %>
-          <% let noches = (dateChO.getTime() - dateChI.getTime()) / ( 1000 * 60 * 60 * 24) %>
-          <% sumaNoches = sumaNoches + noches %>
-        <% } %>
-        <h3><%= sumaNoches %></h3>
-      </div>
       
     </div>
     
@@ -121,6 +108,8 @@
   
       <h3>Noches por Mes</h3>
       <ul class="list-group list-group-flush">
+        <% let noches2024 = nochesPorMeses.enero + nochesPorMeses.febrero + nochesPorMeses.marzo + nochesPorMeses.abril + nochesPorMeses.mayo + nochesPorMeses.junio %>
+        <li class="list-group-item">2024 = <%= noches2024  %></li>
         <li class="list-group-item">Junio = <%= nochesPorMeses.junio  %></li>
         <li class="list-group-item">Mayo = <%= nochesPorMeses.mayo  %></li>
         <li class="list-group-item">Abril =  <%= nochesPorMeses.abril  %></li>
