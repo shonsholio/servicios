@@ -25,3 +25,5 @@ si es direkto o por airbnb
 
 vamos a sumar los ingresos por mes
 
+$gte es un operador en mongoDB que significa todo lo mayor o igual que
+$lt es un operador en mongoDB que significa todo lo menor o igual que

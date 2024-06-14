@@ -3,48 +3,75 @@
   <div class="text-center">
 
     <p class="display-4">JAUSSERS CRM</p>
-    <p class="display-6">AQUI VA EL # DEL APTO</p>
+    <p class="display-6"><%= propiedad %></p>
     <button><a href="/" >Inicio</a></button>
 
     <button><a href="/new-booking" >Nueva Reserva</a></button>
 
   </div>
 
-  <form action="/dataReserva" method="post">
-    <label for="apto">Apartamento</label>
-    <select name="apto">Apartamento
-      <option value="jaussers">Todo Jaussers</option>
-      <option value="409">Ciudad Jardin</option>
-      <option value="306A">Granadillo</option>
-      <option value="501A">La Campiña</option>
-      <option value="510">Mirador 510</option>
-      <option value="702">Mirador 702</option>
-    </select>
-    <button type="submit" >TRABAJAR</button>
-  </form>
+  <div id="encabezadoData" class="d-flex justify-content-center mt-lg-4 mb-lg-4">
 
-  <!-- INGRESOS TOTALES DEL ANO -->
-  <div class="col-4"> 
-    <h3>INGRESOS 2024</h3>
-    <% let sumaReservas = 0 %>
-    <% for (a = 0; a < reservas.length; ++a) { %>
-      <% sumaReservas = sumaReservas + reservas[a].totalReserva %>
-    <% } %>
-    <h3>$ <%= sumaReservas.toLocaleString() %></h3>
-  </div>
-
-    <!-- NOCHES TOTALES -->
-    <div class="col-4"> 
-      <h3>NOCHES 2024</h3>
-      <% var sumaNoches = 0 %>
-      <% for (a = 0; a < reservas.length; ++a) { %>
-        <% let dateChO = new Date(reservas[a].checkOut) %>
-        <% let dateChI = new Date(reservas[a].checkIn) %>
-        <% let noches = (dateChO.getTime() - dateChI.getTime()) / ( 1000 * 60 * 60 * 24) %>
-        <% sumaNoches = sumaNoches + noches %>
-      <% } %>
-      <h3><%= sumaNoches %></h3>
+    <div id="formulario" class="d-flex justify-content-center">
+  
+      <form action="/dataReserva" method="post">
+    
+        <div class="d-block">
+          <label for="apto">Apartamento</label>
+          <select name="apto">Apartamento
+            <option value="jaussers">Todo Jaussers</option>
+            <option value="409">Ciudad Jardin</option>
+            <option value="306A">Granadillo</option>
+            <option value="501A">La Campiña</option>
+            <option value="510">Mirador 510</option>
+            <option value="702">Mirador 702</option>
+          </select>
+        </div>
+    
+        <div class="d-block">
+          <label for="inicio" >Fecha de Inicio</label>
+          <input name="inicio" type="date">
+        </div>
+    
+        <div class="d-block">
+          <label for="final">Fecha Final</label>
+          <input name="final" type="date">
+        </div>
+    
+        <button type="submit" >TRABAJAR</button>
+      </form>
+  
     </div>
+  
+    <div class="d-flex gap-5 text-center col-lg-7">
+      
+      <!-- INGRESOS TOTALES DEL ANO -->
+      <div id="dataIngresos" class="col-4"> 
+        <h3>INGRESOS 2024</h3>
+        <% let sumaReservas = 0 %>
+        <% for (a = 0; a < reservas.length; ++a) { %>
+          <% sumaReservas = sumaReservas + reservas[a].totalReserva %>
+        <% } %>
+        <h3>$ <%= sumaReservas.toLocaleString() %></h3>
+      </div>
+  
+      <!-- NOCHES TOTALES -->
+      <div class="col-4"> 
+        <h3>NOCHES 2024</h3>
+        <% var sumaNoches = 0 %>
+        <% for (a = 0; a < reservas.length; ++a) { %>
+          <% let dateChO = new Date(reservas[a].checkOut) %>
+          <% let dateChI = new Date(reservas[a].checkIn) %>
+          <% let noches = (dateChO.getTime() - dateChI.getTime()) / ( 1000 * 60 * 60 * 24) %>
+          <% sumaNoches = sumaNoches + noches %>
+        <% } %>
+        <h3><%= sumaNoches %></h3>
+      </div>
+      
+    </div>
+    
+
+  </div>
  
   <!-- CODIGO PARA DATA DE MESES -->
   <div>
@@ -74,35 +101,50 @@
     <% } %>        
   </div>
   
-  <!-- INGRESOS POR MES --> 
-  <div class="card col-3">
-    <h3>Ingresos por Mes</h3>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Junio = $<%= junio.toLocaleString() %></li>
-      <li class="list-group-item">Mayo = $<%= mayo.toLocaleString() %></li>
-      <li class="list-group-item">Abril = $<%= abril.toLocaleString() %></li>
-      <li class="list-group-item">Marzo = $<%= marzo.toLocaleString() %></li>
-      <li class="list-group-item">Febrero = $<%= febrero.toLocaleString() %></li>
-      <li class="list-group-item">Enero = $<%= enero.toLocaleString() %></li>
-    </ul>
-  </div>
+  <div id="dataMes" class="d-lg-flex">
 
-  <!-- NOCHES POR APTO POR MES --> 
-  <% var nochesEnero = 0 %>
-  <% var nochesFebrero = 0 %>
-  <% var nochesMarzo = 0 %>
-  <% var nochesAbril = 0 %>
-  <% var nochesMayo = 0 %>
-  <% var nochesJunio = 0 %>
-  <% var nochesJulio = 0 %>
-  <% var nochesAgosto = 0 %>
-  <% var nochesSeptiembre = 0 %>
-  <% var nochesOctubre = 0 %>
-  <% var nochesNoviembre = 0 %>
-  <% var nochesDiciembre = 0 %>
+    <!-- INGRESOS POR MES --> 
+    <div class="card col-3">
+      <h3>Ingresos por Mes</h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Junio = $<%= junio.toLocaleString() %></li>
+        <li class="list-group-item">Mayo = $<%= mayo.toLocaleString() %></li>
+        <li class="list-group-item">Abril = $<%= abril.toLocaleString() %></li>
+        <li class="list-group-item">Marzo = $<%= marzo.toLocaleString() %></li>
+        <li class="list-group-item">Febrero = $<%= febrero.toLocaleString() %></li>
+        <li class="list-group-item">Enero = $<%= enero.toLocaleString() %></li>
+      </ul>
+    </div>
   
+    <!-- NOCHES POR APTO POR MES --> 
+    <div class="card col-3">
+  
+      <h3>Noches por Mes</h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Junio = <%= nochesPorMeses.junio  %></li>
+        <li class="list-group-item">Mayo = <%= nochesPorMeses.mayo  %></li>
+        <li class="list-group-item">Abril =  <%= nochesPorMeses.abril  %></li>
+        <li class="list-group-item">Marzo = <%= nochesPorMeses.marzo  %> </li>
+        <li class="list-group-item">Febrero = <%= nochesPorMeses.febrero  %></li>
+        <li class="list-group-item">Enero = <%= nochesPorMeses.enero  %> </li>
+      </ul>
+    </div>
 
+    <div class="card col-lg-3">
 
+      <h3>% Ocupación</h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Junio = <%= porcOcup.junio %> %</li>
+        <li class="list-group-item">Mayo = <%= porcOcup.mayo %> %</li>
+        <li class="list-group-item">Abril = <%= porcOcup.abril %> %</li>
+        <li class="list-group-item">Marzo = <%= porcOcup.marzo %> %</li>
+        <li class="list-group-item">Febrero = <%= porcOcup.febrero %> %</li>
+        <li class="list-group-item">Enero = <%= porcOcup.enero %> %</li>
+      </ul>
+
+    </div>
+  </div>
+  
 
   <!-- TABLA CON INFO DE RESERVAS -->
   <div class="d-flex justify-content-center mt-4">
