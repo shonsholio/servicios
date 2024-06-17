@@ -50,7 +50,7 @@
 </div>
 
  
-<div class="col-lg-4">
+<div class="col-lg-8">
 
   <table class="table table-hover table-striped d-lg-flex d-none">
 
@@ -62,17 +62,6 @@
       <th>Valor Factura</th>
       <th>Acción</th>
 
-    </tr>
-
-    <tr>
-      <form action="/new-bill" method="post">
-      <td><input type="date" name="fechaLecturaActual" required></input></td>
-      <td><input type="number" name="lecturaActual" required></input></td>
-      <td><input type="date" name="fechaLecturaAnterior" required></input></td>
-      <td><input type="number" name="lecturaAnterior" required></input></td>
-      <td><input type="number" name="valorFactura" required></input></td>
-      <input class="d-none" name="propiedad" value="<%=bills[0].propiedad %>" ></input>
-      <td><button type="submit">+</button></td>
     </tr>
 
     <% for ( i = 0; i < bills.length; ++ i) { %>
@@ -105,7 +94,12 @@
     <% var consumoDelMes = bills[x].consumo %>
     <% var datoId = 'consumo' + x %>
     <div id="<%=datoId %>" data-valor="<%=consumoDelMes %>"></div>
-    <% } %>
+  <% } %>
+
+  <% for (x = 0; x < bills.length ; ++x ) { %>
+    <% var mesFactura = bills[x].fechaLecturaActual.split('-')[1] %>
+    <div id="<%=mesFactura %>" data-valor="<%=mesFactura %>"></div>
+  <% } %>
 
 </div>
 

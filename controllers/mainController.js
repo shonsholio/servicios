@@ -17,7 +17,6 @@ controller.showBills = (req,res) => {
 
   aire.find( { propiedad : filtrado[0] } ).sort( { fechaLecturaActual : -1 } )
   .then(factura => {
-
     res.render('bills', {
       bills: factura
     })

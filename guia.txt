@@ -27,3 +27,7 @@ vamos a sumar los ingresos por mes
 
 $gte es un operador en mongoDB que significa todo lo mayor o igual que
 $lt es un operador en mongoDB que significa todo lo menor o igual que
+
+17/06/2024
+
+Ahora debemos construir el módulo de gastos, para seguir avanzando. Tal cual como lo tenemos en el workflow, la idea es poder agruparlos por centros de costos y de este modo darle manejo al flujo de gastos.
