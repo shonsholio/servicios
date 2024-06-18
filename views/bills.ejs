@@ -9,43 +9,10 @@
 
 </div>
 
+<!-- GRAFICA DE CONSUMO -->
 <div class="col-lg-5 col-12">
  
   <canvas id="graphConsumo" width="400px" height="200px"></canvas>
-
-</div>
-
-<div class="d-lg-none d-flex justify-content-center">
-
-  <form action="/new-bill" method="post">
-
-    <div class="d-block">
-      <label for="fechaLecturaActual">Fecha Lectura Actual</label>
-      <input type="date" name="fechaLecturaActual" required></input>
-    </div>
-
-    <div class="d-block">
-      <label for="lecturaActual">Lectura Actual</label>
-      <input type="number" name="lecturaActual" required></input>
-    </div>
-
-    <div class="d-block">
-      <label for="fechaLecturaAnterior">Fecha Lectura Anterior</label>
-      <input type="date" name="fechaLecturaAnterior" required></input>
-    </div>
-
-    <div class="d-block">
-      <label for="lecturaAnterior">Lectura Anterior</label>
-      <input type="number" name="lecturaAnterior" required></input>
-    </div>
-
-    <div class="d-block">
-      <label for="valorFactura">Valor Factura</label>
-      <input type="number" name="valorFactura" required></input>
-    </div>
-
-    <input class="d-none" name="propiedad" value="<%=bills[0].propiedad %>" ></input>
-    <button type="submit">Añadir Factura</button>
 
 </div>
 
@@ -59,6 +26,7 @@
       <th>Lectura Actual</th>
       <th>Fecha Lectura Anterior</th>
       <th>Lectura Anterior</th>
+      <th>Consumo</th>
       <th>Valor Factura</th>
       <th>Acción</th>
 
@@ -70,17 +38,20 @@
       <td><%= bills[i].lecturaActual %></td>
       <td><%= bills[i].fechaLecturaAnterior %></td>
       <td><%= bills[i].lecturaAnterior %></td>
+      <td><%= bills[i].consumo %></td>
       <td><%= '$ ' + bills[i].valorFactura.toLocaleString() %></td>
       
-      <form action="/delete-Bill?idBill=<%=bills[i].id %>-<%=bills[i].propiedad%>" method="post">
-        <td><button> - </button></td> 
-        <td class="d-none"><input value="<%=bills[i].id %>" class="d-none"></input></td>
-
-      </form>
+      <form action="/delete-bill?idBill=<%=bills[i].id%>-<%=bills[i].propiedad%>" method="post">
+        <td class="d-none" ><input type="hidden" value="<%=bills[i].id %>"></input></td>
+        <td><button onclick="" type="submit" class="btn btn-info text-white" >-</button></td>
+      </form>  
+      
     </tr>
     <% } %>
-
+    
   </table>
+
+
   
   <div id="bills" body="<%=bills %>" ></div>>
 

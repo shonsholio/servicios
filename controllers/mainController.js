@@ -2,6 +2,8 @@ const controller = {};
 const aire = require('../models/air-e')
 const guest = require('../models/guest')
 const booking = require('../models/booking')
+const gasto = require('../models/gasto')
+
 
 controller.main = (req,res) => {
   res.render('main')
@@ -64,10 +66,11 @@ controller.newbill = async (req,res) => {
 }
 
 controller.deleteBill = (req,res) => {
+
   const data = req.query.idBill.split("-")[0]
   const urlActual = req.query.idBill.split("-")[1]
 
-  console.log(urlActual)
+  console.log(data)
 
   aire.deleteOne({ _id : data })
   .then(result => {
@@ -391,6 +394,31 @@ controller.dataReserva = (req,res) => {
   console.log(final)
 
   res.redirect(`/reservas?propiedad=${apto}&inicio=${inicio}&final=${final}`)
+}
+
+controller.gastos = (req,res) => {
+  gasto.find({}).sort({ fecha: -1 })
+  .then(gastos => {
+    res.render('gastos', {
+      propiedad: 'LA QUE SEA',
+      gastos: gastos
+    })
+  })
+
+}
+
+controller.nuevoGasto = async (req,res) => {
+  const data = req.body
+  console.log(data)
+
+  try {
+    const newExpense = await gasto.create(data)
+    res.redirect('/gastos')
+  }
+
+  catch (e) {
+    console.log(e)
+  }
 }
 
 module.exports = controller

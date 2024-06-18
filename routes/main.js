@@ -7,6 +7,7 @@ router.get('/', mainController.main)
 
 router.get('/registro', mainController.register)
 router.post('/new-bill', mainController.newbill)
+
 router.post('/delete-bill', mainController.deleteBill)
 
 router.get('/showbills', mainController.showBills)
@@ -23,6 +24,8 @@ router.post('/newBooking', mainController.addBooking)
 
 router.post('/dataReserva', mainController.dataReserva)
 
+router.get('/gastos', mainController.gastos)
+router.post('/newExpense', mainController.nuevoGasto)
 
 
 
