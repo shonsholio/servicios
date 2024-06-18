@@ -399,9 +399,52 @@ controller.dataReserva = (req,res) => {
 controller.gastos = (req,res) => {
   gasto.find({}).sort({ fecha: -1 })
   .then(gastos => {
+
+    let gastosEnero = 0
+    let gastosFebrero = 0
+    let gastosMarzo = 0
+    let gastosAbril = 0
+    let gastosMayo = 0
+    let gastosJunio = 0
+
+
+    for (y = 0; y < gastos.length; ++ y){
+      let mes = gastos[y].fecha.split('-')[1]
+      switch (mes) {
+        case '01':
+          gastosEnero = gastosEnero + gastos[y].valorGasto ;
+          break;
+        case '02':
+          gastosFebrero = gastosFebrero + gastos[y].valorGasto ;
+          break;
+        case '03':
+          gastosMarzo = gastosMarzo + gastos[y].valorGasto ;
+          break;
+        case '04':
+          gastosAbril = gastosAbril + gastos[y].valorGasto ;
+          break;
+        case '05':
+          gastosMayo = gastosMayo + gastos[y].valorGasto ;
+          break;
+        case '06':
+          gastosJunio = gastosJunio + gastos[y].valorGasto ;
+          break;
+      }
+    } 
+  
+    let gastosPorMes = {
+      'enero': gastosEnero,
+      'febrero': gastosFebrero,
+      'marzo': gastosMarzo,
+      'abril': gastosAbril,
+      'mayo': gastosMayo,
+      'junio': gastosJunio
+    }
+
     res.render('gastos', {
       propiedad: 'LA QUE SEA',
-      gastos: gastos
+      gastos: gastos,
+      gastosPorMes: gastosPorMes
     })
   })
 

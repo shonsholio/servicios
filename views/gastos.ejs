@@ -55,6 +55,19 @@
 
   </form>
 
+  <!-- GASTOS POR MES -->
+  <div>
+    <ul class="card col-lg-3 p-3 list-group list-group-flush"> 
+      <li class="list-group-item" >Junio= $ <%= gastosPorMes.junio.toLocaleString() %></li>
+      <li class="list-group-item" >Mayo= $ <%= gastosPorMes.mayo.toLocaleString() %></li>
+      <li class="list-group-item" >Abril= $ <%= gastosPorMes.abril.toLocaleString() %></li>
+      <li class="list-group-item" >Marzo= $ <%= gastosPorMes.marzo.toLocaleString() %></li>
+      <li class="list-group-item" >Febrero= $ <%= gastosPorMes.febrero.toLocaleString() %></li>
+      <li class="list-group-item" >Enero= $ <%= gastosPorMes.enero.toLocaleString() %></li>
+    </ul>
+  </div>
+
+  <!-- BASE DE DATOS DE GASTOS -->
   <table class="table table-dark table-hover mt-3">
     <tr>
       <th>Fecha</th>
