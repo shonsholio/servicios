@@ -1,0 +1,99 @@
+<%- include('partials/_header') %>
+
+  <div class="text-center">
+
+    <p class="display-4">JAUSSERS CRM</p>
+    <p class="display-6"><%= propiedad %></p>
+
+    <button class="btn btn-info"><a class="text-white text-decoration-none" href="/" >Inicio</a></button>
+    <button class="btn btn-info"><a class="text-white text-decoration-none" href="/new-booking" >Actualizar</a></button>
+
+  </div>
+
+  <% const reserva = data[0] %>
+  <div class="">
+
+    <p> <%=reserva._id %></p>
+    <div class="d-flex justify-content-center mt-lg-4">
+  
+      <form action="/actualizar" method="post" class="card text-center col-lg-5 p-5">
+        <input type="hidden" name="_id" value="<%=reserva._id %>">
+        <div class="d-block">
+          <label for="propiedad">Apartamento</label>
+          <select name="propiedad" required>
+            <option value="<%=reserva.propiedad %>"><%=reserva.propiedad %></option>
+            <option value="409">Ciudad Jardin</option>
+            <option value="306A">Granadillo</option>
+            <option value="501A">La Campiña</option>
+            <option value="510S">510 Suite</option>
+            <option value="510C">510 Completo</option>
+            <option value="702S">702 Suite</option>
+            <option value="702C">702 Completo</option>
+          </select>
+        </div>
+  
+        <div class="d-block">
+          <label for="nombreHuesped">Nombre del Huésped</label>
+          <input name="nombreHuesped" value="<%=reserva.nombreHuesped %>" required>
+        </div>
+  
+        <div class="d-block">
+          <label for="pax"># Huespedes</label>
+          <select name="pax" required>
+            <option value="<%=reserva.pax %>"><%=reserva.pax %></option>
+
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+  
+        <div class="d-block">
+          <label for="checkIn">Check-In</label>
+          <input name="checkIn" type="date" value="<%=reserva.checkIn %>" required>
+        </div>
+  
+        <div class="d-block">
+          <label for="checkOut">Check-Out</label>
+          <input name="checkOut" type="date" value="<%=reserva.checkOut %>" required>
+        </div>
+  
+        <div class="d-block">
+          <label for="channel">Canal</label>
+          <select name="channel" required>
+            <option value="<%=reserva.channel %>"><%=reserva.channel %></option>
+
+            <option value="direkto">Direkto</option>
+            <option value="airbnb">AirBnB</option>
+          </select>
+        </div>
+  
+        <div class="d-block">
+          <label for="totalReserva">Total a Pagar</label>
+          <input name="totalReserva" value="<%=reserva.totalReserva %>" required>
+        </div>
+  
+        <div class="d-block">
+          <label for="status">Status Reserva</label>
+          <select name="status" required>
+            <option value="<%=reserva.status %>"><%=reserva.status %></option>
+
+            <option value="reservada">Reservada</option>
+            <option value="hospedada">Hospedada</option>
+            <option value="cancelada">Cancelada</option>
+          </select>
+        </div>
+  
+  
+        <button type="submit" class="btn btn-info text-white">Actualizar Reserva</button>
+      </form>
+      
+    </div>
+
+  </div>
+
+</body>
+</html>

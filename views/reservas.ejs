@@ -146,6 +146,9 @@
       <th>Huésped</th>
       <th>Pax</th>
       <th>Noches</th>
+      <th>B</th>
+      <th>E</th>
+
     </tr>
     
     <% for (x = 0; x < reservas.length; ++x) { %>
@@ -164,13 +167,38 @@
         <% var dias = Math.abs((dateChO.getTime() - dateChI.getTime()) / ( 1000 * 60 * 60 * 24))%>
 
         <td><%= dias %></td>
+        <td>
+          <form action="/deleteBooking?id=<%=reservas[x]._id %>" method="post"> 
+            <button onclick="confirmar()" class="btn btn-info text-white" id="myBoton">-</button>
+          </form>
+        </td>
 
+        <td>
+          <form action="/updateBooking?id=<%=reservas[x]._id %> %>" method="post">
+            <button class="btn btn-danger text-white">*</button>
+          </form>
+        </td>
+        
     </tr>
     <% } %>
   </table>
 
-</div>
+</div>  
 
-  
+  <!-- FUNCION DE CONFIRMACION -->
+  <script>
+
+    function confirmar() {
+      let respuesta = confirm('Estas seguro que deseas eliminar definitivamente esta reserva')
+      if(respuesta){
+        console.log('vamo a borra')
+      } else{
+        window.location.href('/reservas')
+      }
+    }
+
+    document.getElementById('myBoton').onclick = confirmar
+  </script>
+
 </body>
 </html>

@@ -22,6 +22,10 @@ router.get('/reservas', mainController.reservas)
 router.get('/new-booking', mainController.newBooking)
 router.post('/newBooking', mainController.addBooking)
 
+router.post('/deleteBooking', mainController.deleteBooking)
+router.post('/updateBooking', mainController.updateBooking)
+router.post('/actualizar', mainController.actualizar)
+
 router.post('/dataReserva', mainController.dataReserva)
 
 router.get('/gastos', mainController.gastos)

@@ -2,7 +2,8 @@ const controller = {};
 const aire = require('../models/air-e')
 const guest = require('../models/guest')
 const booking = require('../models/booking')
-const gasto = require('../models/gasto')
+const gasto = require('../models/gasto');
+const { default: mongoose } = require('mongoose');
 
 
 controller.main = (req,res) => {
@@ -462,6 +463,44 @@ controller.nuevoGasto = async (req,res) => {
   catch (e) {
     console.log(e)
   }
+}
+
+controller.deleteBooking = async (req,res) => {
+      
+  const id = req.query
+
+  console.log(id)
+
+  booking.deleteOne({ _id : id.id })
+  .then(result => {
+    console.log(`Documento eliminado: ${result.deletedCount}`);
+    res.redirect('/reservas')
+  })
+  .catch(err => console.error(err));
+
+}
+
+controller.updateBooking = async (req,res) => {
+
+  const id = req.query
+  console.log(id)
+  booking.find({ _id : id.id })
+  .then(resultado => {
+    res.render('updateBook' , {
+      data: resultado,
+      propiedad: 'LO QUE VIENE'
+    })  
+  })
+}
+
+controller.actualizar = async (req,res) => {
+
+  booking.findOneAndReplace({ _id: req.body._id }, req.body)
+  .then((error) => {
+    console.log(error);
+    res.redirect('reservas')
+  })
+
 }
 
 module.exports = controller
