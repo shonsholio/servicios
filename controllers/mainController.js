@@ -139,7 +139,7 @@ controller.reservas = (req,res) => {
         'febrero': (29*5),
         'marzo': (31*5),
         'abril': (30*5),
-        'mayor': (31*5),
+        'mayo': (31*5),
         'junio': (30*5),
         'julio': (31*5),
         'agosto': (31*5),
